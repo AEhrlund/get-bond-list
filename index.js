@@ -126,6 +126,7 @@ async function updateAllBondsFile() {
 async function getBondsList() {
     const creds = await getCredentials()
     const filteredBonds = await getFilteredBonds(creds)
+    console.log('')
     filteredBonds.forEach(bond => {
         console.log(bond)
     })
