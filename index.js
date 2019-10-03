@@ -102,15 +102,15 @@ async function getFilteredBonds(creds) {
     var filteredBonds = []
     var bonds = []
     for (var i = 0; i < shortlistBonds.length; i++) {
-        console.log('')
-        console.log(`Getting info about ${shortlistBonds[i].title} (${shortlistBonds[i].id})`)
+        process.stdout.write('.')
+        //console.log(`Getting info about ${shortlistBonds[i].title} (${shortlistBonds[i].id})`)
         const bond = await avanza.getBond(shortlistBonds[i].id)
-        console.log(`Filter ${bond.name}: ${bond.tradingUnit}`)
+        //console.log(`Filter ${bond.name}: ${bond.tradingUnit}`)
         if (bond.tradingUnit <= MAX_PRICE) {
             bonds.push({ id: bond.id, title: bond.name })
             if (bond.tradable == true && bondForSale(bond)) {
-                console.log(`Added ${bond.name}`)
-                filteredBonds.push(bond)
+                //console.log(`Added ${bond.name}`)
+                filteredBonds.push(bond.name)
             }
         }
     }
@@ -126,7 +126,9 @@ async function updateAllBondsFile() {
 async function getBondsList() {
     const creds = await getCredentials()
     const filteredBonds = await getFilteredBonds(creds)
-    console.log(filteredBonds)
+    filteredBonds.forEach(bond => {
+        console.log(bond)
+    })
 }
 
 if (process.argv[2] == 'update') {
