@@ -13,6 +13,6 @@
     "aeh-credentials": "github:AEhrlund/aeh-credentials"
   },
   "devDependencies": {
-    "eslint": "^6.5.1"
+    "eslint": "^9.15.0"
   }
 }
